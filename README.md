@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alara - Sitio web del proyecto inmobiliario
 
-## Getting Started
+Sitio web inspirado en [Liv District](https://livdistrict.uy/) para promocionar el proyecto Alara y generar contactos por WhatsApp.
 
-First, run the development server:
+## Configuración
+
+### 1. Número de WhatsApp
+
+Editar `src/lib/config.ts` y reemplazar el número:
+
+```ts
+number: "59895078890", // Código país + número sin espacios (+598 95 078 890)
+```
+
+### 2. Google Maps
+
+Actualizar la URL de Google Maps en `src/lib/config.ts` con la ubicación exacta del proyecto.
+
+### 3. Assets (imágenes y video)
+
+Copiar los archivos en las siguientes ubicaciones:
+
+**Video hero (para que funcione en Chrome, Firefox y Safari):**
+El formato `.mov` solo funciona en Safari. Para compatibilidad total, convertí a MP4:
+
+**Opción A - QuickTime (Mac, sin instalar nada):**
+1. Abrí `Web.mov` con QuickTime
+2. Archivo → Exportar como → 1080p
+3. Guardá como `hero.mp4` en `public/video/`
+
+**Opción B - Online:** [CloudConvert MOV to MP4](https://cloudconvert.com/mov-to-mp4) → subí Web.mov → descargá → guardá en `public/video/hero.mp4`
+
+**Opción C - ffmpeg:** `brew install ffmpeg` y luego `./scripts/convert-video.sh`
+
+**Imagen poster del video** (frame o mejor foto para mostrar mientras carga):
+- `public/images/hero-poster.jpg`
+
+**Imágenes de las secciones** (renombrar las fotos de WhatsApp):
+- `public/images/interior-1.jpg` — Sección Concepto
+- `public/images/interior-2.jpg` — Sección Diseño
+- `public/images/exterior-1.jpg` — Sección Calidad
+- `public/images/exterior-2.jpg` — Sección Privacidad
+- `public/images/exterior-3.jpg` — Sección Ubicación
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
