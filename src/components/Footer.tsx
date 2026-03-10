@@ -2,18 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { config } from "@/lib/config";
-
 const navItems = [
   { href: "#planos", label: "Planos" },
   { href: "#unidades", label: "Unidades" },
   { href: "#ubicacion", label: "Ubicación" },
+  { href: "/contacto", label: "Contacto" },
 ];
-
-function getWhatsAppUrl() {
-  const message = encodeURIComponent(config.whatsapp.defaultMessage);
-  return `https://wa.me/${config.whatsapp.number}?text=${message}`;
-}
 
 export function Footer() {
   return (
@@ -35,20 +29,28 @@ export function Footer() {
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm hover:text-white transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.href.startsWith("/") ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
           <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contacto"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-medium rounded-full hover:bg-[#20bd5a] transition-colors"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

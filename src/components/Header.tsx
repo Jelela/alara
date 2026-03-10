@@ -3,18 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { config } from "@/lib/config";
-
 const navItems = [
   { href: "#planos", label: "Planos" },
   { href: "#unidades", label: "Unidades" },
   { href: "#ubicacion", label: "Ubicación" },
+  { href: "/contacto", label: "Contacto" },
 ];
-
-function getWhatsAppUrl() {
-  const message = encodeURIComponent(config.whatsapp.defaultMessage);
-  return `https://wa.me/${config.whatsapp.number}?text=${message}`;
-}
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,22 +46,30 @@ export function Header() {
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium text-white/90 hover:text-white transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.href.startsWith("/") ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm font-medium text-white/90 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm font-medium text-white/90 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </nav>
 
             <div className="flex items-center gap-4">
               <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contacto"
                 className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 bg-[#25D366] text-white text-sm font-medium rounded-full hover:bg-[#20bd5a] transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -96,20 +98,28 @@ export function Header() {
           {menuOpen && (
             <nav className="lg:hidden py-4 border-t border-white/20">
               <div className="flex flex-col gap-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="py-2 text-white/90 hover:text-white font-medium"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {navItems.map((item) =>
+                  item.href.startsWith("/") ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="py-2 text-white/90 hover:text-white font-medium"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="py-2 text-white/90 hover:text-white font-medium"
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
                 <a
-                  href={getWhatsAppUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/contacto"
                   className="inline-flex items-center gap-2 py-3 px-4 mt-2 bg-[#25D366] text-white font-medium rounded-full justify-center"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -139,9 +149,7 @@ export function Header() {
             Una forma de habitar que evoluciona al ritmo de la vida
           </p>
           <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contacto"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white text-lg font-medium rounded-full hover:bg-[#20bd5a] transition-colors shadow-lg"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

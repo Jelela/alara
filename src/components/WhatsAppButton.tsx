@@ -1,18 +1,9 @@
 "use client";
 
-import { config } from "@/lib/config";
-
-function getWhatsAppUrl() {
-  const message = encodeURIComponent(config.whatsapp.defaultMessage);
-  return `https://wa.me/${config.whatsapp.number}?text=${message}`;
-}
-
 export function WhatsAppButton() {
   return (
     <a
-      href={getWhatsAppUrl()}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/contacto"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#20bd5a] hover:scale-110 transition-all"
       aria-label="Contactar por WhatsApp"
     >

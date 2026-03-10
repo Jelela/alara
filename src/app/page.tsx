@@ -74,9 +74,7 @@ El proyecto incorpora un sistema de seguridad de alto nivel, con vigilancia 24 h
               Escribinos por WhatsApp y te contamos todo sobre Alara.
             </p>
             <a
-              href={`https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.defaultMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contacto"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white text-lg font-medium rounded-full hover:bg-[#20bd5a] transition-colors"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

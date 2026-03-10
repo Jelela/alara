@@ -48,7 +48,23 @@ El formato `.mov` solo funciona en Safari. Para compatibilidad total, convertí 
 npm run dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000).
+Abrir [http://localhost:3000](http://localhost:3000). La página de contacto (tabla de unidades para consultar por WhatsApp) está en [http://localhost:3000/contacto](http://localhost:3000/contacto).
+
+## Validar enlaces a /contacto
+
+Para comprobar que todos los botones de WhatsApp llevan a la página de contacto y no a wa.me directo:
+
+```bash
+npm run validate:contacto
+```
+
+Si algo falla, corregir los componentes para que usen `href="/contacto"`.
+
+## Si /contacto no existe o los botones siguen yendo a WhatsApp
+
+1. **Limpiar caché y reconstruir:**  
+   `rm -rf .next && npm run dev`
+2. **Si estás en producción (Vercel, etc.):** hacer push de los cambios y volver a desplegar. La versión desplegada puede ser anterior a la página `/contacto`.
 
 ## Build
 

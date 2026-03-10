@@ -1,77 +1,4 @@
-import { config } from "@/lib/config";
-
-const UNITS = [
-  {
-    id: "001",
-    interior: 113.6,
-    parrillero: 21.6,
-    verde: 115,
-    exterior: 136.6,
-    price: null,
-    sold: true,
-  },
-  {
-    id: "002",
-    interior: 113.6,
-    parrillero: 21.6,
-    verde: 70,
-    exterior: 91.6,
-    price: 401712,
-    sold: false,
-  },
-  {
-    id: "003",
-    interior: 113.6,
-    parrillero: 21.6,
-    verde: 70,
-    exterior: 91.6,
-    price: 401712,
-    sold: false,
-  },
-  {
-    id: "004",
-    interior: 115.1,
-    parrillero: 19.9,
-    verde: 128,
-    exterior: 147.9,
-    price: 416208,
-    sold: false,
-  },
-  {
-    id: "005",
-    interior: 115.1,
-    parrillero: 19.9,
-    verde: 106,
-    exterior: 125.9,
-    price: 411808,
-    sold: false,
-  },
-  {
-    id: "006",
-    interior: 113.6,
-    parrillero: 21.6,
-    verde: 72.5,
-    exterior: 94.1,
-    price: null,
-    sold: true,
-  },
-  {
-    id: "007",
-    interior: 113.6,
-    parrillero: 21.6,
-    verde: 115,
-    exterior: 136.6,
-    price: 410712,
-    sold: false,
-  },
-] as const;
-
-function formatPrice(value: number) {
-  return value.toLocaleString("es-UY", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-}
+import { UNITS, formatPrice } from "@/lib/units";
 
 const PAYMENT_STEPS = [
   "Boleto de reserva 10%",
@@ -183,12 +110,10 @@ export function UnitsSection() {
           </div>
           <div className="bg-stone-50 rounded-lg p-6 border border-stone-200">
             <p className="text-stone-600 mb-4">
-              ¿Te interesa alguna unidad? Escribinos y te asesoramos.
+              ¿Te interesa alguna unidad? Elegí una y consultanos por WhatsApp.
             </p>
             <a
-              href={`https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.defaultMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contacto"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white text-sm font-medium rounded-full hover:bg-[#20bd5a] transition-colors"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
