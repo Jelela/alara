@@ -10,6 +10,10 @@ export default function ContactoPage() {
   const [selectedUnitId, setSelectedUnitId] = useState<string | null>(null);
   const selectedUnit = selectedUnitId ? UNITS.find((u) => u.id === selectedUnitId) : null;
   const canContact = selectedUnit && !selectedUnit.sold;
+  const minAvailablePrice =
+    UNITS.filter((u) => !u.sold && u.price != null)
+      .map((u) => u.price as number)
+      .sort((a, b) => a - b)[0] ?? null;
 
   return (
     <div className="min-h-screen flex flex-col bg-stone-50">
@@ -45,7 +49,9 @@ export default function ContactoPage() {
 
           <div className="flex-1 overflow-auto px-4 sm:px-6 lg:px-8 pb-8">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white text-center drop-shadow-lg mb-6">
-              Unidades desde $361.541 USD
+              {minAvailablePrice == null
+                ? "Unidades disponibles"
+                : `Unidades desde ${formatPrice(minAvailablePrice)} USD`}
             </h1>
             <p className="text-white/90 text-center mb-6 text-sm sm:text-base">
               Elegí la unidad que te interesa y te llevamos a WhatsApp para coordinar una visita.
@@ -75,9 +81,6 @@ export default function ContactoPage() {
                     </th>
                     <th className="px-3 py-3 md:px-4 text-right font-semibold text-stone-800">
                       Precio (USD)
-                    </th>
-                    <th className="px-3 py-3 md:px-4 text-right font-semibold text-stone-800">
-                      10% de descuento
                     </th>
                     <th className="px-3 py-3 md:px-4 text-left font-semibold text-stone-800 md:hidden">
                       Resto
@@ -147,17 +150,8 @@ export default function ContactoPage() {
                             Vendida
                           </span>
                         ) : (
-                          <span className="text-stone-500 line-through">
-                            {formatPrice(unit.price!)} USD
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-3 py-3 md:px-4 text-right font-medium text-stone-900">
-                        {unit.sold ? (
-                          <span className="text-stone-400">—</span>
-                        ) : (
-                          <span>
-                            {formatPrice(Math.round(unit.price! * 0.9))} USD
+                          <span className="text-stone-900">
+                            {unit.price == null ? "Consultar" : `${formatPrice(unit.price)} USD`}
                           </span>
                         )}
                       </td>

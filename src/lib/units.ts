@@ -33,7 +33,7 @@ export const UNITS = [
     verde: 128,
     exterior: 147.9,
     price: 416208,
-    sold: false,
+    sold: true,
   },
   {
     id: "005",

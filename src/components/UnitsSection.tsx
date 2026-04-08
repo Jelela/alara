@@ -43,9 +43,6 @@ export function UnitsSection() {
                 <th className="px-4 py-3 text-right font-semibold text-stone-800">
                   Precio (USD)
                 </th>
-                <th className="px-4 py-3 text-right font-semibold text-stone-800">
-                  10% de descuento
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -77,17 +74,8 @@ export function UnitsSection() {
                         Vendida
                       </span>
                     ) : (
-                      <span className="text-stone-500 line-through">
-                        {formatPrice(unit.price!)} USD
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 text-right font-medium text-stone-900">
-                    {unit.sold ? (
-                      <span className="text-stone-400">—</span>
-                    ) : (
-                      <span>
-                        {formatPrice(Math.round(unit.price! * 0.9))} USD
+                      <span className="text-stone-900">
+                        {unit.price == null ? "Consultar" : `${formatPrice(unit.price)} USD`}
                       </span>
                     )}
                   </td>
