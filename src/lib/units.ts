@@ -42,7 +42,7 @@ export const UNITS = [
     verde: 106,
     exterior: 125.9,
     price: 411808,
-    sold: false,
+    sold: true,
   },
   {
     id: "006",
