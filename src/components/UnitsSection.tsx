@@ -1,12 +1,5 @@
 import { UNITS, formatPrice } from "@/lib/units";
 
-const PAYMENT_STEPS = [
-  "Boleto de reserva 10%",
-  "Compromiso +20% (total 30%)",
-  "60% en cuotas mensuales",
-  "Saldo contra entrega 10% + gastos de ocupación 4%",
-];
-
 export function UnitsSection() {
   const available = UNITS.filter((u) => !u.sold).length;
   const sold = UNITS.filter((u) => u.sold).length;
@@ -85,17 +78,7 @@ export function UnitsSection() {
           </table>
         </div>
 
-        <div className="mt-12 lg:mt-16 grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <h3 className="text-lg font-semibold text-stone-800 mb-4">
-              Forma de pago
-            </h3>
-            <ul className="space-y-2 text-stone-600 list-disc list-inside">
-              {PAYMENT_STEPS.map((step, i) => (
-                <li key={i}>{step}</li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-12 lg:mt-16 max-w-xl mx-auto text-center">
           <div className="bg-stone-50 rounded-lg p-6 border border-stone-200">
             <p className="text-stone-600 mb-4">
               ¿Te interesa alguna unidad? Elegí una y consultanos por WhatsApp.
